@@ -2,23 +2,112 @@
     margin: 0;
     padding: 0;
 }
+/* <!-- 头部 -->*/
 .head{
     margin: 0 auto;
     width: 1250px;
-    height: 150px;
-    // background-color: rgb(184, 128, 128);
-    border-style: 1px #ccc solid;
+    height: 100px;
+    background-color: rgb(184, 128, 128);
+    // border-style: 1px #ccc solid;
     img{
         width: 100px;
         height: 50px;
         float: left;
+        padding-left: 50px;
+        padding-top: 20px;
     }
     ul{
         list-style: none;
         li{
             float: left;
-            margin-left: 100px;
+            line-height: 100px;
+            margin-left: 80px;
+            &:hover{
+                color: rgb(240, 116, 59); 
+            }
+        }
+        
+    }
+
+}
+.seek{
+    width: 400px;
+    height: 50px;
+    // background-color: rgb(104, 219, 104);
+    float: right;
+    margin-right: 100px;
+    input{
+        width: 200px;
+        height: 26px;
+        margin-top: 37px;
+        border: 1px #ccc solid;
+        outline: none;
+        background: url(./图片/css/img/search.png)no-repeat 170px 1px;
+    }
+    button{
+        width: 60px;
+        height: 26px;
+        background-color: #fff;
+        color: rgb(236, 145, 71);
+        border: 1px rgb(236, 145, 71) solid;
+    }
+    
+}
+
+/* <!-- 尾部 -->*/
+.stern{
+    width: 1250px;
+    height: 500px;
+    margin: 0 auto;
+    background-color: #505050;
+    padding-top: 30px;
+    position: relative;
+   
+    img{
+        width: 100px;
+        margin-left: 50px;
+        float: left;
+        overflow: hidden;
+    }
+    .ku{
+        position: absolute;
+        top: 80px;
+        left: 160px;
+        p{
+            color: #ccc;
+            font-size: 14px;
+            height: 25px;
+        }
+
+    }
+    .img1{
+        width: 100px;
+        margin-left: 10px;
+        float: left;
+
+    }
+    ul{
+        margin-left: 60px;
+        float: left;
+        width: 160px;
+        height: 200px;
+        list-style: none;
+         position: relative;
+        // background-color: #fff;
+        p{
+            font-size: 20px;
+            color: #fff;
+            padding-bottom: 20px;  
+        }
+        li{
+            color: rgb(180, 176, 176);
+            line-height: 25px;
+            height: 25px;
+            width: 200px;
         }
     }
+   
+   
+    
 
 }

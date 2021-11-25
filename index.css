@@ -2,21 +2,98 @@
   margin: 0;
   padding: 0;
 }
+/* <!-- 头部 -->*/
 .head {
   margin: 0 auto;
   width: 1250px;
-  height: 150px;
-  border-style: 1px #ccc solid;
+  height: 100px;
+  background-color: #b88080;
 }
 .head img {
   width: 100px;
   height: 50px;
   float: left;
+  padding-left: 50px;
+  padding-top: 20px;
 }
 .head ul {
   list-style: none;
 }
 .head ul li {
   float: left;
-  margin-left: 100px;
+  line-height: 100px;
+  margin-left: 80px;
+}
+.head ul li:hover {
+  color: #f0743b;
+}
+.seek {
+  width: 400px;
+  height: 50px;
+  float: right;
+  margin-right: 100px;
+}
+.seek input {
+  width: 200px;
+  height: 26px;
+  margin-top: 37px;
+  border: 1px #ccc solid;
+  outline: none;
+  background: url(图片/css/img/search.png) no-repeat 170px 1px;
+}
+.seek button {
+  width: 60px;
+  height: 26px;
+  background-color: #fff;
+  color: #ec9147;
+  border: 1px #ec9147 solid;
+}
+/* <!-- 尾部 -->*/
+.stern {
+  width: 1250px;
+  height: 500px;
+  margin: 0 auto;
+  background-color: #505050;
+  padding-top: 30px;
+  position: relative;
+}
+.stern img {
+  width: 100px;
+  margin-left: 50px;
+  float: left;
+  overflow: hidden;
+}
+.stern .ku {
+  position: absolute;
+  top: 80px;
+  left: 160px;
+}
+.stern .ku p {
+  color: #ccc;
+  font-size: 14px;
+  height: 25px;
+}
+.stern .img1 {
+  width: 100px;
+  margin-left: 10px;
+  float: left;
+}
+.stern ul {
+  margin-left: 60px;
+  float: left;
+  width: 160px;
+  height: 200px;
+  list-style: none;
+  position: relative;
+}
+.stern ul p {
+  font-size: 20px;
+  color: #fff;
+  padding-bottom: 20px;
+}
+.stern ul li {
+  color: #b4b0b0;
+  line-height: 25px;
+  height: 25px;
+  width: 200px;
 }
