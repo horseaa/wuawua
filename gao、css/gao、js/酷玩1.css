@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.kuwan_1 {
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+}
+.kuwan_1 p {
+  height: 50px;
+  font-size: 30px;
+  line-height: 50px;
+  text-align: center;
+}
+.kuwan_1 ul {
+  width: 400px;
+  height: 50px;
+  margin: 0 auto;
+  list-style: none;
+  margin-top: 20px ;
+}
+.kuwan_1 ul li {
+  width: 80px;
+  height: 30px;
+  float: left;
+  text-align: center;
+  line-height: 30px;
+  margin-left: 25px;
+  margin-right: 25px;
+  color: #5c5959;
+}
+.kuwan_1 ul li:hover {
+  color: #e05353;
+  border-bottom: 2px #e05353 solid;
+}
+.kuwan_2 {
+  width: 1250px;
+  margin: 0 auto;
+  height: 1200px;
+  background-color: #c2bfbf;
+}
+.kuwan_2 ul {
+  width: 1000px;
+  height: 200px;
+  margin: 0 auto;
+}
+.kuwan_2 ul li {
+  width: 220px;
+  height: 230px;
+  float: left;
+  list-style: none;
+  background-color: #fff;
+  margin-left: 30px;
+  margin-top: 20px;
+  border-style: 1px #646363 solid;
+}
+.kuwan_2 ul li img {
+  width: 220px;
+}
+.kuwan_2 ul li p {
+  line-height: 25px;
+  text-indent: 5px;
+}
+.kuwan_2 ul li .p1 {
+  font-size: 14px;
+  color: #ccc;
+}
+.kuwan_2 ul li .p2 {
+  color: #c70808;
+  float: left;
+}
+.kuwan_2 ul li .xin {
+  float: right;
+}
+.kuwan_2 ul li .xin .p_1 {
+  float: left;
+  width: 30px;
+  height: 30px;
+  text-indent: 1em;
+  background: url(../../图片/css/img/xin.png) no-repeat 0px 7px;
+}
+.kuwan_2 ul li .xin .p_1 .span_1 {
+  font-size: 12px;
+  color: #948d8d;
+}
+.kuwan_2 ul li .xin .p_2 {
+  float: left;
+  width: 30px;
+  height: 30px;
+  text-indent: 1em;
+  background: url(../../图片/css/img/reply.png) no-repeat 0px 7px;
+}
+.kuwan_2 ul li .xin .p_2 .span_2 {
+  font-size: 12px;
+  color: #948d8d;
+}
