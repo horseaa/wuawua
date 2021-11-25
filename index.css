@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.head {
+  margin: 0 auto;
+  width: 1250px;
+  height: 150px;
+  border-style: 1px #ccc solid;
+}
+.head img {
+  width: 100px;
+  height: 50px;
+  float: left;
+}
+.head ul {
+  list-style: none;
+}
+.head ul li {
+  float: left;
+  margin-left: 100px;
+}
