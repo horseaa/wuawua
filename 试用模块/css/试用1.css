@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.one1{
+    text-align: center;
+    list-style: none;
+    font-size: 40px;
+    line-height: 100px;
+}
+.one2{
+    list-style: none;
+}
+.one2 .one2-1{
+    list-style: none;
+    position: absolute;
+    top: 120px;
+    left: 662px;
+}
+.one2 .one2-2{
+    list-style: none;
+    position: absolute;
+    top: 120px;
+    left: 809px
+}
+.one3{
+    height: 0px;
+    width: 1519px;
+    border: 1px solid rgb(228, 225, 225);
+    margin: 50px 0;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+    color: rgb(71, 70, 70);
+}
+.one4 .one4-1{
+    list-style: none;
+    position: absolute;
+    top: 166px;
+    left: 500px;
+}
+.one4 .one4-2{
+    list-style: none;
+    position: absolute;
+    top: 166px;
+    left: 670px;
+}
+.one4 .one4-3{
+    list-style: none;
+    position: absolute;
+    top: 166px;
+    left: 826px;
+}
+.one4 .one4-4{
+    list-style: none;
+    position: absolute;
+    top: 166px;
+    left: 1000px;
+}
+.one5{
+    list-style: none;
+    height: 1292px;
+    width: 1519px;
+    background-color: rgb(238, 241, 241);
+    position: relative;
+}
+
+.one5 .one5-1{
+    height: 1292px;
+    width: 1000px;
+    border: 1px solid rgb(24, 23, 23 .1);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.one5 .one5-1 li{
+    height: 280px;
+    width: 220px;
+    position: relative;
+    border: 1px solid rgb(204, 202, 202);
+    margin-top: 25px;
+}
+.one5 .one5-2{
+    /* position: absolute;
+    line-height: 22px;
+    z-index: 10;
+    padding: 0 180px;
+    border-radius: 0 0 0 6px;
+    top: 0;
+    /* right: 0; */
+    /* color: rgb(247, 240, 240);
+    background-color: brown; */ 
+    position: absolute;
+    z-index: 10px;
+    top: 0;
+    left: 180px;
+    color: rgb(240, 233, 233);
+    background-color: brown;
+    line-height: 20px;
+    width: 42px ;
+    text-align: center;
+    border-radius: 0  5px 0 0;
+}
+.one5 .name{
+    font-size: 17px;
+    height: 48px;
+    font-weight: bold;
+    text-align: center;
+}
+.one5 .one5-3{
+    padding-top: 5px;
+}
+.one5 .one5-4{
+    /* display: inline-block; */
+    /* padding: 10px 11px; */
+    /* margin: 0 6px;
+    border-radius: 5px; */
+    color: #ccc;
+    text-align: center;
+}
+.one5 .one5-4>span{
+    border: 1px solid #ccc;
+    display: inline-block;
+    /* padding: 10px 11px; */
+    margin: 0 6px;
+    border-radius: 3px;
+    /* color: #ccc;
+    text-align: center; */
+    font-size: 15px;
+}
+.one5 .one5-5{
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+}
+.one5 .one5-5>span{
+    color: rgb(230, 87, 87);
+}
+.one5 .one5-6{
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: rgb(204, 200, 200);
+}
