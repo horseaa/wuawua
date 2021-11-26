@@ -29,11 +29,16 @@
   line-height: 30px;
   margin-left: 25px;
   margin-right: 25px;
+}
+.kuwan_1 ul li a {
+  text-decoration: none;
   color: #5c5959;
 }
-.kuwan_1 ul li:hover {
-  color: #e05353;
+.kuwan_1 ul .li_t {
   border-bottom: 2px #e05353 solid;
+}
+.kuwan_1 ul .li_t a {
+  color: #e05353;
 }
 .kuwan_2 {
   width: 1250px;
