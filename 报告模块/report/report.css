@@ -1,0 +1,219 @@
+.wrap {
+    width: 1000px;
+    min-width: 1000px;
+    text-align: left;
+    margin: 0 auto;}
+    .play-top h1 {
+    text-align: center;
+    padding: 34px 0 30px;
+    font-size: 40px;
+}
+h1, h2, h3 {
+    font-weight: normal;
+}
+.play-nav {
+    text-align: center;
+    line-height: 1.7;
+    font-size: 0;
+}
+.play-nav a {
+    display: inline-block;
+    padding-bottom: 12px;
+    width: 165px;
+    font-size: 18px;
+}
+a {
+    text-decoration: none;
+    color: #333;
+    outline: none;
+}
+a {
+    margin: 0;
+    padding: 0;
+        padding-bottom: 0px;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+.play-nav a, .category li a, .use-nav a {
+    color: #a3a3a3;
+}
+.play-nav a.on {
+    color: #fe5431;
+}
+.play-nav a.on {
+    border-bottom: 4px #fe5431 solid;
+    padding-bottom: 8px;
+}
+.play-nav a, .category li a, .use-nav a {
+    color: #a3a3a3;
+}
+.play-nav a {
+    display: inline-block;
+    padding-bottom: 12px;
+    width: 165px;
+    font-size: 18px;
+}
+/* -------------------------------------------- */
+.report-box {
+    background: #f7f7f7;
+}
+.pad25 {
+    padding-top: 25px;
+}
+.wrap {
+    width: 1000px;
+    min-width: 1000px;
+    text-align: left;
+    margin: 0 auto;
+}
+.listInfo {
+    width: 700px;
+}
+.left {
+    float: left;
+}
+nav ul, ul {
+    list-style: none;
+}
+.listInfo li {
+    border-radius: 6px;
+    border: 1px solid #e6e9e9;
+    margin-bottom: 13px;
+    position: relative;
+    overflow: hidden;
+}
+.listInfo li a {
+    display: block;
+}
+.listInfo li img {
+    border-radius: 6px;
+}
+img {
+    vertical-align: top;
+}
+.listInfo li .info {
+    background: rgba(255,255,255,.9);
+}
+.listInfo li .info {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 22px;
+}
+.listInfo li .title {
+    color: #474747;
+}
+.listInfo li .title {
+    font-size: 18px;
+    padding: 9px 0 12px;
+    font-weight: normal;
+}
+.title {
+    color: #474747;
+    line-height: 1.6;
+}
+.listInfo li .btm {
+    font-size: 13px;
+    padding: 16px 0 11px;
+}
+.left {
+    float: left;
+}
+.listInfo .btm .icon {
+    color: #a3a3a3;
+}
+.right {
+    float: right;
+}
+.icon .zan {
+    background: url(img/zan.png) no-repeat left 4px;
+}
+.icon span {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 14px;
+    margin-left: 3px;
+}
+.icon .look {
+    background: url(img/reply.png) no-repeat left center;
+}
+
+.fix::after {
+
+clear: both;
+content: "";
+display: block;
+height: 0;
+visibility: hidden;
+
+}
+/* --------------------you----------- */
+.listR {
+    width: 270px;
+}
+.right {
+    float: right;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+.listR .guanzhu {
+    padding-top: 40px;
+}
+.listR .title {
+    position: relative;
+    font-size: 18px;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 30px;
+}
+.title {
+    color: #474747;
+    line-height: 1.6;
+}
+h1, h2, h3 {
+    font-weight: normal;
+}
+.listR .title::after {
+    background: #fe5341;
+}
+.listR .title::after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 6px;
+    height: 25px;
+    left: 0;
+    top: 0;
+}
+.listR .imgBox {
+    margin-top: 20px;
+}
+figure {
+    padding: 0;
+    margin: 0;
+        margin-top: 0px;
+}
+img {
+    vertical-align: top;
+}
+.listR .imgBox {
+    margin-top: 20px;
+}
+figure {
+    padding: 0;
+    margin: 0;
+        margin-top: 0px;
+}
