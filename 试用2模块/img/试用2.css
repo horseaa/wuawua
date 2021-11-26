@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.tow1{
+    width: 100%;
+    height: 80px;
+    background-color: rgb(236, 238, 240);
+}
+.tow1 .tow1-1{
+    width: 1000px;
+    height: 80px;
+    border: 1px solid rgb(173, 31, 31);
+}
+.tow1 .tow1-2{
+   width: 60px;
+   height: 80px;
+   border-left: 1px solid crimson;
+   position: absolute;
+
+}
+.tow1 .tow1-2>li{
+     font-size: 25px;
+     line-height: 39px;
+}
+.tow1 .tow1-3{
+    width: 50px;
+    height: 60px;
+    border-bottom: 2px solid crimson;
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    background: url(./use1.png)no-repeat;
+    /* list-style: none; */
+}
+.tow1 .tow1-3>li{
+    font-size: 5px;
+    list-style: none;
+    line-height: 102px;
+}
+.tow1 .tow1-4{
+    width: 50px;
+    height: 60px;
+    border: 1px solid crimson;
+    position: absolute;
+    top: 10px;
+    left: 300px;
+    background: url(./use2.png)no-repeat;
+}
+.tow1 .tow1-4>li{
+    font-size: 5px;
+    list-style: none;
+    line-height: 102px;
+}
+.tow1 .tow1-5{
+    width: 50px;
+    height: 60px;
+    border: 1px solid crimson;
+    position: absolute;
+    top: 10px;
+    left: 500px;
+    background: url(./use3.png)no-repeat;
+}
+.tow1 .tow1-5>li{
+    font-size: 5px;
+    list-style: none;
+    line-height: 102px;
+}
+.tow1 .tow1-6{
+    width: 50px;
+    height: 60px;
+    /* border: 1px solid crimson; */
+    position: absolute;
+    top: 10px;
+    left: 700px;
+    background: url(./use4.png)no-repeat;
+}
+.tow1 .tow1-6>li{
+    font-size: 5px;
+    list-style: none;
+    line-height: 102px;
+}
