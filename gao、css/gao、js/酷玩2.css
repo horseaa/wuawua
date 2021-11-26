@@ -5,8 +5,8 @@
 .kuwan_1 {
   width: 100%;
   height: 100px;
-  background-color: #fff;
   margin-bottom: 2px;
+  background-color: #fff;
 }
 .kuwan_1 p {
   height: 50px;
@@ -31,15 +31,15 @@
   margin-right: 25px;
   color: #5c5959;
 }
-.kuwan_1 ul li a {
-  text-decoration: none;
-  color: #5c5959;
+.kuwan_1 ul li a{
+    text-decoration: none;
+    color: rgb(92, 89, 89);
 }
-.kuwan_1 ul .li_1 {
+.li_1 {
   border-bottom: 2px #e05353 solid;
 }
-.kuwan_1 ul .li_1 a {
-  color: #e05353;
+.kuwan_1 ul .li_1 a{
+  color: #c70808;
 }
 .kuwan_2 {
   width: 1250px;

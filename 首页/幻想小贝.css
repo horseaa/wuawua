@@ -1,0 +1,102 @@
+.focus {
+    background: url(../图片/css/img/original.jpg) no-repeat center top;
+}
+.focus {
+    height: 300px;
+    overflow: hidden;
+}
+.focus-info {
+    text-align: right;
+    padding-top: 35px;
+    transform: translate(800px,-800px);
+    -moz-animation: rotateIn 1s ease both;
+    -webkit-animation: rotateIn 1s ease both;
+    animation: move 1s ease both;
+}
+.wrap {
+    width: 1000px;
+    min-width: 1000px;
+    text-align: left;
+    margin: 0 auto;
+}
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+        padding-top: 0px;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+h1, h2, h3 {
+    font-weight: normal;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 14px;
+    font-weight: bold;
+}
+.focus-info .label span {
+    background: rgba(255,255,255,.3);
+}
+.focus-info .label span {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.focus-info .time {
+    padding: 20px 0 16px 0;
+    font-size: 18px;
+}
+.focus-info .btn a {
+    background: #fe5341;
+    color: #fff;
+}
+.focus-info .btn a {
+    width: 242px;
+    height: 48px;
+    text-align: center;
+    display: inline-block;
+    line-height: 48px;
+    font-size: 24px;
+    border-radius: 3px;
+}
+.focus-info h2 {
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+h1, h2, h3 {
+    font-weight: normal;
+}
+.focus-info {
+    color: #fff;
+    transition: all 2s;
+}
+.focus-info {
+    text-align: right;
+}
+a:hover {
+    text-decoration: none;
+}
+a:hover, a:focus, a:visited {
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+    color: #333;
+    outline: none;
+}
+a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+@keyframes move{
+100%{
+    transform: translate(0,0);
+}
+}

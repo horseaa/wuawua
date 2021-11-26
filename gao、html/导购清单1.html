@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>酷玩-最新</title>
-    <link rel="stylesheet" href="../gao、css/gao、js/酷玩1.css">
+    <title>购物清单-最新</title>
+    <link rel="stylesheet" href="../gao、css/gao、js/导购清单1.css">
     <link rel="stylesheet" href="../index.css">
     <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
     <script src="../jquery-3.4.1.min.js"></script>
@@ -29,43 +29,36 @@
   </div>
   <!-- 内容你写的内容请用一个div包裹 -->
   <div class="kuwan_1">
-    <p>发现酷玩</p>
+    <p>导购清单</p>
     <ul>
-        <li class="li_1"><a href="./酷玩1.html">最新</li>
-        <li><a href="./酷玩2.html">最热</a></li>
-        <li><a href="./酷玩3.html">品类</a></li>
+        <li class="li_t"><a href="./导购清单1.html">最新</a></li>
+        <li><a href="./导购清单2.html">最热</a></li>
     </ul>
   </div>
   <div class="kuwan_2">
       <ul id="ul1">
           <!-- <li>
-              <img src="../图片/img/k1.jpg" alt="">
-              <p>SCiO 微型光谱仪</p>
-              <p class="p1">可以测定食物成分及营养</p>
+              <img src="../图片/img/g1.jpg" alt="">
+              <p class="p_p">花万元把蜗居秒变“豪宅”？这12件家具就能帮你办到</p>
               <br>
-              <p class="p2">￥1212</p>
               <div class="xin">
                   <p class="p_1"><span class="span_1">3</span></p>
                   <p class="p_2"><span class="span_2">4</span></p>
               </div> 
           </li>
           <li>
-            <img src="../图片/img/k1.jpg" alt="">
-            <p>SCiO 微型光谱仪</p>
-            <p class="p1">可以测定食物成分及营养</p>
+            <img src="../图片/img/g2.jpg" alt="">
+            <p class="p_p">到底有没有完美的iPhone手机配件，答案都在这里</p>
             <br>
-            <p class="p2">￥1212</p>
             <div class="xin">
                 <p class="p_1"><span class="span_1">3</span></p>
                 <p class="p_2"><span class="span_2">4</span></p>
             </div> 
         </li>
         <li>
-            <img src="../图片/img/k1.jpg" alt="">
-            <p>SCiO 微型光谱仪</p>
-            <p class="p1">可以测定食物成分及营养</p>
+            <img src="../图片/img/g3.jpg" alt="">
+            <p class="p_p">花万元把蜗居秒变“豪宅”？这12件家具就能帮你办到</p>
             <br>
-            <p class="p2">￥1212</p>
             <div class="xin">
                 <p class="p_1"><span class="span_1">3</span></p>
                 <p class="p_2"><span class="span_2">4</span></p>
@@ -137,7 +130,8 @@
   </div>
 </body>
 <script>
-  const ul1=$("#ul1")
+
+const ul1=$("#ul1")
   axios.defaults.baseURL = 'http://192.168.31.5:3000'
     axios({
         method:'get',
@@ -145,33 +139,30 @@
         // url:"useing/master",
         // url:"report/new",
         // url:"report/hot",
-        url:"play/new",
+        // url:"play/new",
         // url:"play/hot",双重
-        // url:"guid/new",
+        url:"guid/new",
         // url:"guid/hot",
 
     }).then(response=>{
 console.log(response.data);
 
-
-        for(let k=0;k<2;k++){
-        for (let i = 0; i < response.data[k].length; i++) {
+for (let i = 0; i < response.data.length; i++) {
            let newNode= `
           <li>
-              <img src="${response.data[k][i].img}" alt="">
-              <p>${response.data[k][i].description} </p>
-              <p class="p1">${response.data[k][i].text}</p>
+              <img src="${response.data[i].img}" alt="">
+              <p class="p_p">${response.data[i].text}</p>
               <br>
-              <p class="p2">${response.data[k][i].price}</p>
               <div class="xin">
-                  <p class="p_1"><span class="span_1">${response.data[k][i].like}</span></p>
-                  <p class="p_2"><span class="span_2">${response.data[k][i].words}</span></p>
+                  <p class="p_1"><span class="span_1">${response.data[i].like}</span></p>
+                  <p class="p_2"><span class="span_2">${response.data[i].words}</span></p>
               </div> 
           </li>
 `
 ul1.append(newNode)
-        
-    }}
+    }
+       
+       
 
 })
 </script>

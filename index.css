@@ -7,7 +7,7 @@
   margin: 0 auto;
   width: 1250px;
   height: 100px;
-  background-color: #b88080;
+  border-bottom: 2px solid rgb(207, 194, 194);
 }
 .head img {
   width: 100px;
@@ -26,6 +26,10 @@
 }
 .head ul li:hover {
   color: #f0743b;
+}
+.head ul li a {
+  text-decoration: none;
+  color: #505050;
 }
 .seek {
   width: 400px;
@@ -79,7 +83,7 @@
   float: left;
 }
 .stern ul {
-  margin-left: 60px;
+  margin-left: 40px;
   float: left;
   width: 160px;
   height: 200px;
@@ -96,4 +100,39 @@
   line-height: 25px;
   height: 25px;
   width: 200px;
+}
+/* --------------友情链接修改----------- */
+#friendship{
+  display: flex;
+  flex-wrap: wrap;
+  width: 180px;
+}
+#friendship p{
+  width: 150px;
+  text-align: center;
+}
+#friendship li{
+  width: 80px;
+  margin-right: 10px;
+}
+.stern ul:nth-of-type(1){
+  margin-left: 100px;
+}
+/* #friendship li:nth-of-type(1){
+  width: 300px;
+} */
+/* ---------------回到顶部------------------------ */
+
+.backTop {
+  background: url(/图片/css/img/back.png) no-repeat #e8e8e8 center center;
+}
+.backTop {
+  display: block;
+  transition: background 0.1s ease-in;
+  position: fixed;
+  line-height: 999;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
 }
