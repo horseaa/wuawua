@@ -7,7 +7,6 @@
   margin: 0 auto;
   width: 1250px;
   height: 100px;
-  background-color: #b88080;
 }
 .head img {
   width: 100px;
@@ -26,6 +25,10 @@
 }
 .head ul li:hover {
   color: #f0743b;
+}
+.head ul li a {
+  text-decoration: none;
+  color: #505050;
 }
 .seek {
   width: 400px;
