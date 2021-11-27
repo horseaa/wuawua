@@ -14,6 +14,65 @@
     <script src="./轮播图/js/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="./轮播图/js/swiper-bundle.min.css">
 </head>
+<style>
+    .swiper-container{
+        left: 238px !important;
+    }
+    .lun{
+        margin: 0px 15px;
+    }
+    .common .info .tip {
+    color: #a3a3a3;
+}
+.common .info .tip {
+    padding: 13px 0;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.icon .zan {
+    background: url(../图片/css/img/zan.png) no-repeat left 4px;
+}
+.icon span {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 14px;
+    margin-left: 3px;
+}
+.icon .look {
+    background: url(../图片/css/img/reply.png) no-repeat left center;
+}
+.icon span {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 14px;
+    margin-left: 3px;
+}
+.common .info .name {
+    font-size: 14px;
+    height: 45px;
+    overflow: hidden;
+    word-break: break-all;
+}
+.common .info .tip {
+    color: #a3a3a3;
+}
+.common .info .tip {
+    padding: 13px 0;
+}
+.icon .xin {
+    background: url(../图片/css/img/xin.png) no-repeat left center;
+}
+.icon span {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 14px;
+    margin-left: 3px;
+}
+</style>
 <body>
     <div class="head" id="top11">
         <img src="../图片/img/logonew.png" alt="">
@@ -26,8 +85,8 @@
         </ul>
         <div class="seek">
           <input type="text">
-          <button>注册</button>
-        </div>
+         <a href="../注册模块/注册页面.html"> <button>注册</button>
+         </div></a>
       </div>
       <!-- 幻想小贝 -->
       <section class="focus">
@@ -50,7 +109,8 @@
         <p>热门试用</p>
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                <div class="swiper-slide"  id="lun11">
+
                     <div class="lun">
                         <img src="http://192.168.31.5:3000/img/hot1.jpg" alt="" width="220px" height="120px">
                         <div class="biaoti">巴慕达 The Toaster 烤面包机</div>
@@ -96,7 +156,8 @@
                 </div>
 
 
-                <div class="swiper-slide">
+                <div class="swiper-slide" id="lun22">
+            
                     <div class="lun">
                         <img src="http://192.168.31.5:3000/img/hot4.jpg" alt="" width="220px" height="120px">
                         <div class="biaoti">巴慕达 The Toaster 烤面包机</div>
@@ -139,8 +200,9 @@
                         </div>
                         <div class="p2">剩余时间2天</div>
                     </div>
-                </div>
-                <div class="swiper-slide">
+                </div> 
+                <div class="swiper-slide" id="lun33">
+                 
                     <div class="lun">
                         <img src="http://192.168.31.5:3000/img/hot3.jpg" alt="" width="220px" height="120px">
                         <div class="biaoti">巴慕达 The Toaster 烤面包机</div>
@@ -235,6 +297,7 @@
 			</li> -->
 		</ul>
 	</section>
+   
     <!-- -------------------发现酷玩-------------------------------------------- -->
     <section class="report-box" id="play">
 		<div class="wrap play common">
@@ -342,4 +405,80 @@
     })
 </script>
 <script src="./真-首页.js"></script>
+
+<!-- <script>
+const lun11=$("#lun11")
+const lun22=$("#lun22")
+const lun33=$("#lun33")
+axios.defaults.baseURL = 'http://192.168.31.5:3000'
+// btn3.onclick=function(){
+  axios({
+      method:'get',
+      url:"/useing/public",
+      // url:"useing/master",
+      // url:"report/new",
+    //   url:"report/hot",
+      // url:"play/new",
+      // url:"play/hot",双重
+      // url:"guid/new",
+      // url:"guid/hot",
+
+  }).then(response=>{
+console.log(response.data);
+      for (let i = 0; i < 4; i++) {
+         let newNode= `
+         <a href="../试用2模块/试用模块2.html">
+                  <div class="lun">
+                        <img src="${response.data[i].img}" alt="" width="220px" height="120px">
+                        <div class="biaoti">${response.data[i].text}</div>
+                        <span>2032</span>
+                        <span>20台</span>
+                        <div class="p1">
+                            <p>1392</p>申请
+                        </div>
+                        <div class="p2">剩余时间2天</div>
+                    </div>
+                </a>
+`
+let newNode1= `
+<a href="../试用2模块/试用模块2.html">
+<div class="lun">
+      <img src="${response.data[i+4].img}" alt="" width="220px" height="120px">
+      <div class="biaoti">${response.data[i+4].text}</div>
+      <span>2032</span>
+      <span>20台</span>
+      <div class="p1">
+          <p>1392</p>申请
+      </div>
+      <div class="p2">剩余时间2天</div>
+  </div>
+  </a>
+`
+let newNode2= `
+<a href="../试用2模块/试用模块2.html">
+<div class="lun">
+      <img src="${response.data[i+8].img}" alt="" width="220px" height="120px">
+      <div class="biaoti">${response.data[i+8].text}</div>
+      <span>2032</span>
+      <span>20台</span>
+      <div class="p1">
+          <p>1392</p>申请
+      </div>
+      <div class="p2">剩余时间2天</div>
+  </div>
+  </a>
+`
+lun11.append(newNode)
+lun22.append(newNode1)
+lun33.append(newNode2)
+      
+  }
+
+})
+
+
+
+
+
+</script> -->
 </html>
