@@ -133,7 +133,7 @@
     <li>CEO邮箱：CEO@jiguo.com</li>
 
   </ul>
-
+<!-- <a href="" style="text-decoration: none; color: orange;"></a> -->
   </div>
   <a href="javascript:void(0);" class="backTop" id="back" style="position: fixed; left: 1400px; top: 650px; display: block;">返回顶部</a>
 </body>
@@ -159,8 +159,9 @@ console.log(response.data);
         for (let i = 0; i < response.data[k].length; i++) {
            let newNode= `
           <li>
+            <a href="../试用2模块/试用模块2.html" style="text-decoration: none; ">
               <img src="${response.data[k][i].img}" alt="">
-              <p>${response.data[k][i].description} </p>
+              <p style="text-decoration: none; color: orange;">${response.data[k][i].description} </p>
               <p class="p1">${response.data[k][i].text}</p>
               <br>
               <p class="p2">${response.data[k][i].price}</p>
@@ -168,6 +169,7 @@ console.log(response.data);
                   <p class="p_1"><span class="span_1">${response.data[k][i].like}</span></p>
                   <p class="p_2"><span class="span_2">${response.data[k][i].words}</span></p>
               </div> 
+           </a>
           </li>
 `
 ul1.append(newNode)

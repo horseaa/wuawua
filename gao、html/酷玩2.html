@@ -159,6 +159,7 @@ console.log(response.data);
         for (let i = 0; i <response.data[k].length; i++) {
            let newNode= `
           <li>
+            <a href="../试用2模块/试用模块2.html" style="text-decoration: none; ">
               <img src="${response.data[k+2][i].img}" alt="">
               <p>${response.data[k+2][i].description} </p>
               <p class="p1">${response.data[k+2][i].text}</p>
@@ -168,6 +169,7 @@ console.log(response.data);
                   <p class="p_1"><span class="span_1">${response.data[k+2][i].like}</span></p>
                   <p class="p_2"><span class="span_2">${response.data[k+2][i].words}</span></p>
               </div> 
+              </a>
           </li>
 `
 ul1.append(newNode)

@@ -35,6 +35,7 @@
         <li><a href="./导购清单2.html">最热</a></li>
     </ul>
   </div>
+ 
   <div class="kuwan_2">
       <ul id="ul1">
           <!-- <li>
@@ -151,6 +152,7 @@ console.log(response.data);
 for (let i = 0; i < response.data.length; i++) {
            let newNode= `
           <li>
+            <a href="./导购3.html" style="text-decoration: none; color:black">
               <img src="${response.data[i].img}" alt="">
               <p class="p_p">${response.data[i].text}</p>
               <br>
@@ -158,7 +160,9 @@ for (let i = 0; i < response.data.length; i++) {
                   <p class="p_1"><span class="span_1">${response.data[i].like}</span></p>
                   <p class="p_2"><span class="span_2">${response.data[i].words}</span></p>
               </div> 
+            </a>
           </li>
+          
 `
 ul1.append(newNode)
     }
