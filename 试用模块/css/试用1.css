@@ -2,6 +2,16 @@
     margin: 0;
     padding: 0;
 }
+.shouye{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    /* background-color: rgb(206, 138, 138); */
+    position: absolute;
+    top: 115px;
+    left: 487px;
+}
 .one1{
     text-align: center;
     list-style: none;
