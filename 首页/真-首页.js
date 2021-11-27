@@ -80,7 +80,7 @@ for (let i = 0; i < 4; i++) {
 						<p class="name">${response.data[i].text}</p>
 						<div class="tip fix">
 							<div class="right icon">
-								<span class="xin">>${response.data[i].like}</span>
+								<span class="xin">${response.data[i].like}</span>
 								<span class="look">${response.data[i].words}</span>
 							</div>
 						</div>
