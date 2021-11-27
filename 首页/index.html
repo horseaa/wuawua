@@ -109,7 +109,8 @@
         <p>热门试用</p>
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                <div class="swiper-slide"  id="lun11">
+
                     <div class="lun">
                         <img src="http://192.168.31.5:3000/img/hot1.jpg" alt="" width="220px" height="120px">
                         <div class="biaoti">巴慕达 The Toaster 烤面包机</div>
@@ -155,7 +156,8 @@
                 </div>
 
 
-                <div class="swiper-slide">
+                <div class="swiper-slide" id="lun22">
+            
                     <div class="lun">
                         <img src="http://192.168.31.5:3000/img/hot4.jpg" alt="" width="220px" height="120px">
                         <div class="biaoti">巴慕达 The Toaster 烤面包机</div>
@@ -198,8 +200,9 @@
                         </div>
                         <div class="p2">剩余时间2天</div>
                     </div>
-                </div>
-                <div class="swiper-slide">
+                </div> 
+                <div class="swiper-slide" id="lun33">
+                 
                     <div class="lun">
                         <img src="http://192.168.31.5:3000/img/hot3.jpg" alt="" width="220px" height="120px">
                         <div class="biaoti">巴慕达 The Toaster 烤面包机</div>
@@ -294,6 +297,7 @@
 			</li> -->
 		</ul>
 	</section>
+   
     <!-- -------------------发现酷玩-------------------------------------------- -->
     <section class="report-box" id="play">
 		<div class="wrap play common">
@@ -401,4 +405,80 @@
     })
 </script>
 <script src="./真-首页.js"></script>
+
+<!-- <script>
+const lun11=$("#lun11")
+const lun22=$("#lun22")
+const lun33=$("#lun33")
+axios.defaults.baseURL = 'http://192.168.31.5:3000'
+// btn3.onclick=function(){
+  axios({
+      method:'get',
+      url:"/useing/public",
+      // url:"useing/master",
+      // url:"report/new",
+    //   url:"report/hot",
+      // url:"play/new",
+      // url:"play/hot",双重
+      // url:"guid/new",
+      // url:"guid/hot",
+
+  }).then(response=>{
+console.log(response.data);
+      for (let i = 0; i < 4; i++) {
+         let newNode= `
+         <a href="../试用2模块/试用模块2.html">
+                  <div class="lun">
+                        <img src="${response.data[i].img}" alt="" width="220px" height="120px">
+                        <div class="biaoti">${response.data[i].text}</div>
+                        <span>2032</span>
+                        <span>20台</span>
+                        <div class="p1">
+                            <p>1392</p>申请
+                        </div>
+                        <div class="p2">剩余时间2天</div>
+                    </div>
+                </a>
+`
+let newNode1= `
+<a href="../试用2模块/试用模块2.html">
+<div class="lun">
+      <img src="${response.data[i+4].img}" alt="" width="220px" height="120px">
+      <div class="biaoti">${response.data[i+4].text}</div>
+      <span>2032</span>
+      <span>20台</span>
+      <div class="p1">
+          <p>1392</p>申请
+      </div>
+      <div class="p2">剩余时间2天</div>
+  </div>
+  </a>
+`
+let newNode2= `
+<a href="../试用2模块/试用模块2.html">
+<div class="lun">
+      <img src="${response.data[i+8].img}" alt="" width="220px" height="120px">
+      <div class="biaoti">${response.data[i+8].text}</div>
+      <span>2032</span>
+      <span>20台</span>
+      <div class="p1">
+          <p>1392</p>申请
+      </div>
+      <div class="p2">剩余时间2天</div>
+  </div>
+  </a>
+`
+lun11.append(newNode)
+lun22.append(newNode1)
+lun33.append(newNode2)
+      
+  }
+
+})
+
+
+
+
+
+</script> -->
 </html>

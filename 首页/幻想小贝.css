@@ -11,7 +11,7 @@
     transform: translate(800px,-800px);
     -moz-animation: rotateIn 1s ease both;
     -webkit-animation: rotateIn 1s ease both;
-    animation: move 1s ease both;
+    animation: move 2s ease both;
 }
 .wrap {
     width: 1000px;
