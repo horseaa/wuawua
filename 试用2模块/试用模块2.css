@@ -7,6 +7,7 @@
     height: 80px;
     background-color: rgb(236, 238, 240);
     clear: both;
+    position: relative;
 }
 .tow1 .tow1-1{
     width: 1000px;
@@ -338,7 +339,7 @@ a{
      height: 430px;
      /* background-color: aqua; */
      position: absolute;
-     top:2630px ;
+     top:3038px ;
      left: 260px;
      list-style: none;
  }

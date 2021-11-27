@@ -12,7 +12,7 @@ const ul1=$(".one5-1").eq(0)
         // url:"guid/hot",
     }).then(response=>{
 console.log(response.data);
-        for (let i = 0; i < response.data.length; i++) {
+        for (let i = 0; i < 12; i++) {
            let newNode= `
            <li>
                         <span class="one5-2">首发</span>

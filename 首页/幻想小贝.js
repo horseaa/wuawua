@@ -1,3 +1,4 @@
+
 (function() {
     var day = hour = minitus = second = ms = 0;
     var year = new Date().getFullYear() + 1;
@@ -11,7 +12,7 @@
         second = Math.floor(tmp / 1000);
         ms = tmp - 1000 * second;
         
-        document.getElementsByClassName("time")[0].innerHTML = "距离" + year + "年还有 " + day + " 天 " + hour + " 小时 " + minitus + " 分 " + second + " 秒 " ;
+        let time1 = document.getElementsByClassName("time")[0].innerHTML = "距离" + year + "年还有 " + day + " 天 " + hour + " 小时 " + minitus + " 分 " + second + " 秒 " ;
         setTimeout(arguments.callee, 50);
     })(); 
 })();

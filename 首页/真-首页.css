@@ -1,0 +1,120 @@
+.report-box {
+    background: #f7f7f7;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+.wrap {
+    width: 1000px;
+    min-width: 1000px;
+    text-align: left;
+    margin: 0 auto;
+}
+.common .title, .hot-box .title {
+    position: relative;
+    padding: 18px 0 16px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.title {
+    color: #474747;
+    line-height: 1.6;
+}
+.common .title a.more {
+    font-weight: normal;
+    position: absolute;
+    right: 0;
+    top: 22px;
+    padding-right: 17px;
+    font-size: 14px;
+}
+.title a.more {
+    background: url(img/readMore.png) no-repeat right 7px;
+    color: #fd6959;
+}
+a:hover, a:focus, a:visited {
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+    color: #333;
+    outline: none;
+}
+a {
+    margin: 0;
+    padding: 0;
+        padding-right: 0px;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+.common ul {
+    padding-bottom: 20px;
+}
+nav ul, ul {
+    list-style: none;
+}
+.common ul li {
+    background: #fff;
+}
+.common ul li {
+    width: 220px;
+    height: 231px;
+    line-height: 21px;
+    margin: 0 27px 20px 0;
+    float: left;
+    border: 1px solid #e6e9e9;
+    border-radius: 6px;
+}
+.common ul::after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+/* --------导航精选-------- */
+.report-box {
+    background: #f7f7f7;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+.playMore {
+    color: #a3a3a3;
+}
+.playMore {
+    text-align: center;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    position: absolute;
+    bottom: -52px;
+    left: 46%;
+}
+/* 字体在右边 */
+.focus-info {
+    text-align: right;
+}
+#play{
+    height: 944px;
+    margin-bottom: 50px;
+    overflow: hidden;
+    position: relative;
+}
+#play li{
+    margin-bottom: 60px;
+}
+.playMore a{
+    font-size: 18px;
+    color: #fd6959;
+}
