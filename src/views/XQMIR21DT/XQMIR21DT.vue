@@ -97,9 +97,7 @@ const initializeFlag = ref(0);
 const efFormInfo = ref<{ [key: string]: any }>({});
 const efFormIsReady = ref(false);
 const formPartition = ref("");
-
 const tabActiveKey = ref("tab1"); //默认显示的标签
-let fieldIds: string[] = []; //动态列集(上次)
 
 //页面变量
 const data: any = reactive({
@@ -125,12 +123,6 @@ const data: any = reactive({
   MAP_CODE: "QMIR21",
 });
 
-let dataSource: any;
-let resultArray0;
-let mergedObjAll;
-//let resultCodes=[];//放所有的动态列
-let resultCodes: any[] = [];
-let customColumns = ref([{}]); //存放0z画面维护的列
 //---------------------标红-----监听数据改变执行------------------------------------
 let ANALYSE_ITEM_ARRAY: any = []; // 去重后的项目
 const erGrid1Ready = (e: any) => {
@@ -223,9 +215,10 @@ const handleData = (data: any) => {
   const filterArr: any = []; // 去除后的数据
   let customColumns: any = []; //所有列
   analysisData.forEach((item: any) => {
+    // ==========================设置列id 根据id分组==========================================================
     const QID = item.ANALYSE_ITEM_CODE.toUpperCase();
     const myField = `Q${QID}`; //分析项目Q+code
-    // 数据去重，放入filterArr----------------------------------------------------------
+    // ======================================================================================================
     if (item.SAMPLE_NO && !SAMPLE_NO_ARRAY.includes(item.SAMPLE_NO)) {
       SAMPLE_NO_ARRAY.push(item.SAMPLE_NO);
       filterArr.push(item);
@@ -269,10 +262,7 @@ const handleData = (data: any) => {
       firstRowData[property] = "";
     }
   });
-  console.log("filterArr", filterArr);
-  nextTick(() => {
-    erFormHelper.mergeDataToGrid(filterArr, "gridView1", true);
-  });
+  erFormHelper.mergeDataToGrid(filterArr, "gridView1", true);
 };
 //查询
 //================================查询质量信息（动态展示列名）=======================================
@@ -314,7 +304,7 @@ const queryInfo = async () => {
   const analysisDataD: any = outInfo.blocks["Table0"].data;
   //所有的分析项目数据=0z+qmir21_inq
   const dataRes: any = analysisDataZ.concat(analysisDataD);
-  console.log("🚀 ~ dataRes:", dataRes);
+  console.log("🚀 查询到的原始数据:", dataRes);
   if (analysisDataD.length > 0) {
     handleData(dataRes);
   } else {
