@@ -327,6 +327,11 @@ declare module "ERX/ErLayout" {
       default: boolean;
       require: boolean;
     };
+    isCollapsed: {
+      type: BooleanConstructor;
+      default: boolean;
+      require: boolean;
+    };
     displayRows: {
       type: NumberConstructor;
       default: number;
@@ -393,12 +398,13 @@ declare module "ERX/ErLayout" {
       require: boolean;
     };
   }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-    toolbarClick: (...args: any[]) => void;
-    focus: (...args: any[]) => void;
     itemButtonClick: (...args: any[]) => void;
     pressEnter: (...args: any[]) => void;
+    focus: (...args: any[]) => void;
     blur: (...args: any[]) => void;
+    toolbarClick: (...args: any[]) => void;
     dropdownOpen: (...args: any[]) => void;
+    configUpdate: (...args: any[]) => void;
     QueryClick: (...args: any[]) => void;
     DisplayAllClick: (...args: any[]) => void;
     loaded: (...args: any[]) => void;
@@ -412,6 +418,7 @@ declare module "ERX/ErLayout" {
     toolbarAddCopyClick: (...args: any[]) => void;
     toolbarDeleteClick: (...args: any[]) => void;
     toolbarSaveClick: (...args: any[]) => void;
+    codeMirrorReady: (...args: any[]) => void;
     groupButtonClick: (...args: any[]) => void;
     itemClick: (...args: any[]) => void;
     itemDbclick: (...args: any[]) => void;
@@ -448,6 +455,11 @@ declare module "ERX/ErLayout" {
       require: boolean;
     };
     allowCollapse: {
+      type: BooleanConstructor;
+      default: boolean;
+      require: boolean;
+    };
+    isCollapsed: {
       type: BooleanConstructor;
       default: boolean;
       require: boolean;
@@ -520,12 +532,13 @@ declare module "ERX/ErLayout" {
   }>> & {
     onFocus?: ((...args: any[]) => any) | undefined;
     onBlur?: ((...args: any[]) => any) | undefined;
+    onQueryClick?: ((...args: never) => any) | undefined;
     onToolbarClick?: ((...args: any[]) => any) | undefined;
     onDropdownOpen?: ((...args: any[]) => any) | undefined;
     onPressEnter?: ((...args: any[]) => any) | undefined;
-    onQueryClick?: ((...args: never) => any) | undefined;
     onDisplayAllClick?: ((...args: never) => any) | undefined;
     onItemButtonClick?: ((...args: any[]) => any) | undefined;
+    onConfigUpdate?: ((...args: any[]) => any) | undefined;
     onLoaded?: ((...args: any[]) => any) | undefined;
     onToolbarFirstClick?: ((...args: any[]) => any) | undefined;
     onToolbarPreClick?: ((...args: any[]) => any) | undefined;
@@ -537,11 +550,13 @@ declare module "ERX/ErLayout" {
     onToolbarAddCopyClick?: ((...args: any[]) => any) | undefined;
     onToolbarDeleteClick?: ((...args: any[]) => any) | undefined;
     onToolbarSaveClick?: ((...args: any[]) => any) | undefined;
+    onCodeMirrorReady?: ((...args: any[]) => any) | undefined;
     onGroupButtonClick?: ((...args: any[]) => any) | undefined;
     onItemClick?: ((...args: any[]) => any) | undefined;
     onItemDbclick?: ((...args: any[]) => any) | undefined;
     onValueChanged?: ((...args: any[]) => any) | undefined;
   }, {
+    options: Record<string, any>;
     showPageButton: boolean;
     showPrintButton: boolean;
     showRefreshButton: boolean;
@@ -549,18 +564,18 @@ declare module "ERX/ErLayout" {
     showAddCopyButton: boolean;
     showDeleteButton: boolean;
     showSaveButton: boolean;
-    bindModel: any;
     configId: string;
     erFormHelperProp: ER.FormHelper;
-    options: Record<string, any>;
+    displayRows: number;
     layoutName: string;
     configCaption: string;
     showGroupBorder: boolean;
     allowCollapse: boolean;
-    displayRows: number;
+    isCollapsed: boolean;
     showQueryButton: boolean;
     showFormToolbar: boolean;
     autoBind: boolean;
+    bindModel: any;
     labelAlignTop: boolean;
   }, {}>, {
     borderSlot?(_: {}): any;
@@ -632,6 +647,38 @@ declare module "ERX/ErPopApprovalSteps" {
     approvalStepsHelperProp: ER.ApprovalStepsHelper;
   }, {}>;
   export default _default;
+}
+declare module "ERX/ErMenuFormBase" {
+  import { ER } from 'ERX/Er';
+  const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
+    erFormOptions: {
+      type: () => ER.FormHelperOptions | (() => ER.FormHelper);
+      required: true;
+      default: () => void;
+    };
+  }, {
+    erFormHelper: ER.FormHelper;
+  }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+    load: (...args: any[]) => void;
+  }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    erFormOptions: {
+      type: () => ER.FormHelperOptions | (() => ER.FormHelper);
+      required: true;
+      default: () => void;
+    };
+  }>> & {
+    onLoad?: ((...args: any[]) => any) | undefined;
+  }, {
+    erFormOptions: ER.FormHelperOptions | (() => ER.FormHelper);
+  }, {}>, {
+    default?(_: {}): any;
+  }>;
+  export default _default;
+  type __VLS_WithTemplateSlots<T, S> = T & {
+    new(): {
+      $slots: S;
+    };
+  };
 }
 declare module "ERX/ErMenuDevPlat" {
   import { ER } from 'ERX/Er';
@@ -1203,29 +1250,173 @@ declare module "ERX/Er" {
       en: string;
       zh_Hans: string;
     }
+    interface ErLayoutOptions {
+      context?: {
+        [key: string]: any;
+      };
+      itemButtonClick?: {
+        preventDefault?: string;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      itemValueChanged?: {
+        preventDefault?: string;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      itemDropdownOpen?: {
+        preventDefault?: string;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      itemPressEnter?: {
+        preventDefault?: string;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      itemFocus?: {
+        preventDefault?: string;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      itemBlur?: {
+        preventDefault?: string;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+    }
+    interface ErGridOptions {
+      context?: {
+        [key: string]: any;
+      };
+      options?: {
+        [key: string]: any;
+      };
+      focusChanged?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      click?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      doubleClick?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      toolbarClick?: {
+        preventDefault?: string;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+    }
+    interface MenuFormOptions {
+      formConfigName?: string;
+      formContext?: {
+        [key: string]: any;
+      };
+      formReady?: (e: any) => void;
+      F1_DO?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      F2_DO?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      F3_DO?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      F4_DO?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      F5_DO?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      F6_DO?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      F7_DO?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      F8_DO?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      F9_DO?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      F10_DO?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      F11_DO?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+      F12_DO?: {
+        preventDefault?: boolean;
+        before?: (e: any) => boolean;
+        after?: (e: any) => void;
+      };
+    }
+    interface FormHelperOptions {
+      formName: string;
+      configIds?: string | string[];
+      partition?: string;
+      initialService: string;
+      initialParams?: {
+        [key: string]: any;
+      };
+      context?: {
+        [key: string]: any;
+      };
+    }
     interface PopFreeFormEventType {
-      'initial': string;
-      'open': string;
-      'ok': string;
-      'cancel': string;
-      'close': string;
-      'itemValueChanged': string;
-      'itemButtonClick': string;
-      'pressEnter': string;
-      'focus': string;
-      'blur': string;
+      initial: string;
+      open: string;
+      ok: string;
+      cancel: string;
+      close: string;
+      itemValueChanged: string;
+      itemButtonClick: string;
+      pressEnter: string;
+      focus: string;
+      blur: string;
     }
     interface PopQueryFormEventType {
-      'initial': string;
-      'open': string;
-      'ok': string;
-      'cancel': string;
-      'close': string;
-      'filterItemValueChanged': string;
-      'filterItemButtonClick': string;
-      'filterItemPressEnter': string;
-      'filterItemFocus': string;
-      'filterItemBlur': string;
+      initial: string;
+      open: string;
+      query: string;
+      ok: string;
+      cancel: string;
+      close: string;
+      filterItemValueChanged: string;
+      filterItemButtonClick: string;
+      filterItemPressEnter: string;
+      filterItemFocus: string;
+      filterItemBlur: string;
+      mainViewFocusChanged: string;
     }
     interface TranslateOptions {
       baseURL?: string;
@@ -1293,7 +1484,7 @@ declare module "ERX/Er" {
        */
       static getDateTimeFormatString(date: Date | Dayjs | String | undefined, formatString?: string): string;
       /**
-       * 判断对象是否为空,字符串Trim()后lenght为零,数组长度为0时
+       * 判断对象是否为空,字符串Trim()后lenght为零,数值型为0时,数组长度为0时
        * @param obj
        * @returns boolean
        */
@@ -1321,10 +1512,23 @@ declare module "ERX/Er" {
       /**
        * 获取国际化相关数据
        * @param key key
-       * @param locale 语言
+       * @param args 替换参数
        * @returns string
        */
-      static $t(key: string, locale?: keyof Culture): string;
+      static $t(key: string, args?: any): string;
+      /**
+       * 将json对象转换成string并保存成文件
+       * @param jsonObject json对象
+       * @returns void
+       */
+      static saveAsJsonFile(jsonObject: any, fileName?: string): void;
+      /**
+       * 读取文件并调用回调函数
+       * @param callBack 回调函数
+       * @param options 选项[type, multiple, accept]
+       * @returns void
+       */
+      static readFiles(callBack: (files: any[]) => void, options?: any): void;
       /**
        * 把颜色转换成16进制颜色
        * @param obj 数据
@@ -1815,7 +2019,7 @@ declare module "ERX/Er" {
        * @param text 文本
        * @returns Promise<void>
        */
-      static copyText(text: string): Promise<unknown>;
+      static copyText(text: any): void;
       /**
        * 读取粘贴板的文本
        * @returns Promise<string>
@@ -1832,24 +2036,7 @@ declare module "ERX/Er" {
        * @param serviceTransformer 请求/响应数据处理回调函数
        * @returns Promise EI.EIInfo
        */
-      static callService(partition: string, svcName: string, data: EI.EIInfo, showLoading?: boolean | ILoadingOptions, messageError?: boolean | 'modal', showLoadingAnimotion?: boolean, serviceTransformer?: {
-        autoId: boolean;
-        autoColumnToUpper: boolean;
-      }): Promise<EI.EIInfo>;
-      /**
-         * 调用授权分区service
-         * @param svcName 服务名称
-         * @param data 传入数据
-         * @param showLoading 是否显示loading
-         * @param messageError 错误时是否显示Error信息
-         * @param showLoadingAnimotion 是否显示loading动画
-         * @param serviceTransformer 请求/响应数据处理回调函数
-         * @returns Promise EI.EIInfo
-         */
-      static callMasterEPService(svcName: string, data: EI.EIInfo, showLoading?: boolean, messageError?: boolean, showLoadingAnimotion?: boolean, serviceTransformer?: {
-        autoId: boolean;
-        autoColumnToUpper: boolean;
-      }): Promise<EI.EIInfo>;
+      static callService(partition: string, svcName: string, data: EI.EIInfo, showLoading?: boolean | ILoadingOptions, messageError?: boolean | 'modal', showLoadingAnimotion?: boolean, serviceTransformer?: any): Promise<EI.EIInfo>;
     }
     class SysInfo {
       /**
@@ -2006,6 +2193,7 @@ declare module "ERX/Er" {
       get(field: string): string extends infer T ? T extends string ? T extends keyof this ? this[T] : any : never : never;
       set(field: string, value: any, setValueBySchemaFields?: boolean): Model;
       reset(): Model;
+      setSchema(schema: DataTableSchemaFields, reset?: boolean): Model;
       setData(data: {
         [key: string]: any;
       }, setValueBySchemaFields?: boolean): Model;
@@ -2013,7 +2201,7 @@ declare module "ERX/Er" {
       reomveField(...fields: DataTableSchemaField[]): Model;
       accept(jsonData?: {
         [key: string]: any;
-      }, shcema?: DataTableSchemaFields): Model;
+      }, schema?: DataTableSchemaFields): Model;
     }
     /**
      * 数据表
@@ -2025,12 +2213,15 @@ declare module "ERX/Er" {
       private _dataRemoved;
       private _options;
       private _currentModel;
+      private _allowCancelChanges;
       tableName: string;
       get options(): DataTableOptions;
       get rowCount(): number;
       get Current(): Model | undefined;
       constructor(options?: DataTableOptions);
+      private setDataCopy;
       init(options: DataTableOptions): void;
+      setAllowCancelChanges(allowCancelChanges: boolean | undefined): DataTable;
       addField(...fields: DataTableSchemaField[]): DataTable;
       removeField(...fields: DataTableSchemaField[]): DataTable;
       get(uid: string): any;
@@ -2309,7 +2500,9 @@ declare module "ERX/Er" {
       /**
        * 画面初始化自定义参数
        */
-      get InitialConfiParas(): {};
+      get InitialConfiParas(): {
+        [key: string]: string | number;
+      } | undefined;
       /**
        * 布局配置对应的当前账套代码
        */
@@ -2402,8 +2595,12 @@ declare module "ERX/Er" {
        * @param serverPartition 服务分区
        * @param formName 画面代码
        * @param serviceName 服务名称
+       * @param layoutIds 区域配置代码
+       * @param sysConfiParas 画面自定义参数
        */
-      constructor(serverPartition?: string, formName?: string, serviceName?: string);
+      constructor(serverPartition?: string, formName?: string, serviceName?: string, layoutIds?: string | Array<string>, initialConfiParas?: {
+        [key: string]: string | number;
+      });
       /**
        * 调用后台服务service获取配置数据并实例化工具类
        * @param serverPartition 服务分区
@@ -2442,7 +2639,7 @@ declare module "ERX/Er" {
        * @param locale 语言，不传时为当前系统语言
        * @returns 多语言环境下对应的文本
        */
-      $t(key: string, locale?: keyof Culture): string;
+      $t(key: string, args?: any): string;
       /**
        * 设置画面标题
        * @param caption 画面标题
@@ -2660,7 +2857,7 @@ declare module "ERX/Er" {
        * @param dataSource 数据源[omitted时为配置数据源]
        * @returns 配置信息
        */
-      setDropDownBindArribute(layoutType: string, columnConfig: any, dataSource?: any[] | Function): {
+      setDropDownBindOptions(layoutType: string, columnConfig: any, dataSource?: any[] | Function): {
         [key: string]: any;
       };
       /**
@@ -3083,10 +3280,10 @@ declare module "ERX/Er" {
       * @param configId 配置代码
       * @param visible 是否可见
       * @param itemCodes 控件配置代码[多个项目用逗号隔开]
-      * @param resetValue 控件的值重置类型[none:不操作|defalut:设置成配置默认值|empty:清空值]
+      * @param resetValue 控件的值重置类型[none:不操作|default:设置成配置默认值|empty:清空值]
       * @returns this
       */
-      setControlVisible(configId: string, visible: boolean, itemCodes: string, resetValue?: 'none' | 'defalut' | 'empty'): FormHelper;
+      setControlVisible(configId: string, visible: boolean, itemCodes: string, resetValue?: 'none' | 'default' | 'empty'): FormHelper;
       /**
        * 设置grid列的标题、字体颜色、背景颜色
        * @param grid grid对象
@@ -3529,7 +3726,7 @@ declare module "ERX/Er" {
        * @param ...colIds 列信息
        * @returns this
        */
-      setGridColumnEditable(grid: any, editable: boolean | 'default', ...colIds: string[]): FormHelper;
+      setGridColumnEditable(grid: any, editable: boolean | Function | 'default', ...colIds: string[]): FormHelper;
       /**
        * 根据配置信息及选中代码获取选中行的数据
        * @param configId 布局配置代码
@@ -3698,7 +3895,7 @@ declare module "ERX/Er" {
      * @param text 文本
      * @returns Promise<void>
      */
-      copyText(text: string): Promise<unknown>;
+      copyText(text: string): void;
       /**
        * 读取粘贴板的文本
        * @returns Promise<string>
@@ -3758,20 +3955,6 @@ declare module "ERX/Er" {
        * @returns Promise<EI.EIInfo>
        */
       callService(svcName: string, data: EI.EIInfo, showLoading?: boolean | ILoadingOptions, messageError?: boolean | 'modal', showLoadingAnimotion?: boolean, partition?: string): Promise<EI.EIInfo>;
-      /**
-      * 调用授权分区service
-      * @param svcName 服务名称
-      * @param data 传入数据
-      * @param showLoading 是否显示loading
-      * @param messageError 错误时是否显示Error信息
-      * @param showLoadingAnimotion 是否显示loading动画
-      * @param serviceTransformer 请求/响应数据处理回调函数
-      * @returns Promise<EI.EIInfo>
-      */
-      callMasterEPService(svcName: string, data: EI.EIInfo, showLoading?: boolean, messageError?: boolean, showLoadingAnimotion?: boolean, serviceTransformer?: {
-        autoId: boolean;
-        autoColumnToUpper: boolean;
-      }): Promise<EI.EIInfo>;
       /**
        * 动态SQL查询
        * @param svcName 自定义服务名称，传空时默认系统服务
@@ -4190,6 +4373,16 @@ declare module "ERX/Er" {
        */
       excuteGridServerPaging(grid: any, queryPage: number): Promise<any>;
     }
+    class BillFormHelper {
+      private _formHelper;
+      /**
+       * 画面工具类构造函数
+       * @param serverPartition 服务分区
+       * @param formName 画面代码
+       * @param serviceName 服务名称
+       */
+      constructor(formHelper: FormHelper, options?: any);
+    }
     /**
      * 通用弹出查询类
      */
@@ -4198,6 +4391,10 @@ declare module "ERX/Er" {
        * 服务分区
        */
       get Partiton(): string;
+      /**
+       * 查询分区
+       */
+      get QueryPartiton(): string;
       /**
        * 画面ID[自动生成的唯一标识]
        */
@@ -4232,6 +4429,10 @@ declare module "ERX/Er" {
       CustomFilterJson: {
         [key: string]: any;
       };
+      /**
+       * 弹出窗口类型
+       */
+      BordStyle: 'Fixed' | 'Sizable';
       /**
        * app
        */
@@ -4270,7 +4471,12 @@ declare module "ERX/Er" {
       CancelButtonCaption: string;
       CloseDialogWhenOkClick: boolean;
       ShowQueryNoDetailInfoMsg: boolean;
-      OkButtonPreventDefault: boolean;
+      ButtonPreventDefault: {
+        ok: boolean;
+        cancel: boolean;
+        query: boolean;
+        mainViewFocusChanged: boolean;
+      };
       UnMountWhenCloseDialog: boolean;
       AutoQuery: boolean;
       AutoRefresh: boolean;
@@ -4288,6 +4494,7 @@ declare module "ERX/Er" {
       DetailViewOptions: any;
       MainInfoQueryMethod: Function | undefined;
       private _partition?;
+      private _queryPartition?;
       private _formName;
       private _layoutConfigIds;
       private _sysConfiParas?;
@@ -4334,6 +4541,12 @@ declare module "ERX/Er" {
        * @returns void
        */
       getFormOption(key: string): any;
+      /**
+      * 设置画面查询分区
+      * @param partition 分区信息
+      * @returns void
+      */
+      setQueryPartition(partition: string): any;
       /**
        * 设置画面的相关事件
        * @param event 事件'pressEnter', 'focus', 'blur'
@@ -4387,7 +4600,10 @@ declare module "ERX/Er" {
        * 服务分区
        */
       get Partition(): string;
-      set Partition(partition: string);
+      /**
+       * 保存分区
+       */
+      get SavePartiton(): string;
       /**
        * 画面ID[自动生成的唯一标识]
        */
@@ -4485,6 +4701,10 @@ declare module "ERX/Er" {
        */
       UnMountWhenCloseDialog: boolean;
       /**
+       * 弹出窗口类型
+       */
+      BordStyle: 'Fixed' | 'Sizable';
+      /**
        * 调用服务时传入后台附加列数据
        */
       ExtendJsonData: {
@@ -4503,6 +4723,7 @@ declare module "ERX/Er" {
        */
       div: any;
       private _partition?;
+      private _savePartition?;
       private _formName;
       private _tableName;
       private _layoutConfigId;
@@ -4551,6 +4772,12 @@ declare module "ERX/Er" {
        * @returns void
        */
       getFormOption(key: string): any;
+      /**
+       * 设置画面保存分区
+       * @param partition 保存分区
+       * @returns void
+       */
+      setSavePartition(partition: string): void;
       /**
        * 传入数据并展示[画面初始时]
        * @param data 默认数据
@@ -4648,7 +4875,7 @@ declare module "ERX/Er" {
        */
       ShowOkCancelButton: boolean;
       /**
-       * 弹出类型
+       * 弹出窗口类型
        */
       BordStyle: 'Fixed' | 'Sizable';
       /**
@@ -4795,6 +5022,10 @@ declare module "ERX/Er" {
        * 关闭窗口后是否卸载组件
        */
       UnMountWhenCloseDialog: boolean;
+      /**
+       * 弹出窗口类型
+       */
+      BordStyle: 'Fixed' | 'Sizable';
       /**
        * app
        */

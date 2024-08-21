@@ -3,9 +3,9 @@
 /// <reference types="node" />
 /// <reference types="node" />
 /// <reference types="node" />
-import { EI } from "./ei";
-import { IEnvironment, IUserInfo } from "./model";
-import { ValueType } from "./type";
+import { EI } from './ei';
+import { IEnvironment, IUserInfo } from './model';
+import { ValueType } from './type';
 import { EITools } from './ei-tools';
 /**
  * 获取本地Token
@@ -91,12 +91,24 @@ export declare const buildEIInfo: (data: {
  * @returns eiinfo
  */
 export declare const setContext: (eiinfo: EI.EIInfo) => EI.EIInfo;
-export declare const getContext: () => EITools.Context;
+export declare const getContext: () => EITools.IContent;
 export declare const setFormName: (eiInfo: EI.EIInfo) => EI.EIInfo;
 export declare const loading: (toggle: boolean, timeout: {
     value: NodeJS.Timeout | undefined;
 }, element?: any, showAnimation?: boolean, ms?: number) => void;
 export declare const isJsonString: (jsonStr: string) => boolean;
+export declare const TimeoutManager: {
+    timeoutIds: {
+        id: NodeJS.Timeout;
+        target?: any;
+    }[];
+    addTimeoutId(id: {
+        id: NodeJS.Timeout;
+        target?: any;
+    }): void;
+    removeTimeoutId(id: any): void;
+    clearAllTimeouts(): void;
+};
 export declare const isHtmlString: (htmlStr: string) => boolean;
 export declare const getHtmlTagContent: (htmlStr: string) => string[];
 export declare const PLAT_TYPE: "4C" | "4J";
@@ -106,3 +118,6 @@ export declare const EP_NAME: string;
 export declare const base64Encode: (arrayBuffer: ArrayBuffer) => string;
 export declare const base64Decode: (base64String: string) => Buffer;
 export declare const toIsoString: (date: Date) => string;
+export declare const setPlatLocalStorage: (key: string, value: any, remember?: boolean) => void;
+export declare const getPlatLocalStorage: (key: string, remember?: boolean) => string | null;
+export declare const removePlatLocalStorage: (key: string) => void;

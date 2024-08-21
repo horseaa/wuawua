@@ -3,7 +3,7 @@
  * @Author: Edward
  * @Date: 2024-01-03 09:54:05
  * @LastEditors: Edward
- * @LastEditTime: 2024-01-10 16:54:48
+ * @LastEditTime: 2024-05-15 10:23:58
  */
 declare module "EIX/ei" {
   export {
@@ -52,6 +52,9 @@ declare module "EIX/ei" {
     setRefreshToken,
     setRememberMe,
     setToken,
-    toIsoString
+    toIsoString,
+    setPlatLocalStorage,
+    getPlatLocalStorage,
+    removePlatLocalStorage
   } from '#/@mf-types/EIX/types/index';
 }
