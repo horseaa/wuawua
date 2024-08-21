@@ -137,17 +137,13 @@ const erGrid1Ready = (e: any) => {
   data.grid1 = e.api;
   erFormHelper.setGridEditable("gridView1", false);
   const gridApi = e.api;
-  gridApi.addEventListener("rowDataUpdated", (e: any) => {
-    console.log("收费的发动机发动机工具软件", e.columnApi);
+  gridApi.addEventListener("firstDataRendered", (e: any) => {
+    console.log("e", e);
     e.columnApi.getColumns()?.forEach((column: any) => {
-      console.log("哇哇哇哇哇哇哇哇哇哇", ANALYSE_ITEM_ARRAY);
-
       if (ANALYSE_ITEM_ARRAY.includes(column.colId)) {
         column.getColDef().cellStyle = (params: any) => {
-          console.log("*********params.value", params.value);
           if (params.value && typeof params.value === "string") {
-            //return { backgroundColor: "red" };//背景标红
-            return { color: "red" }; //字体标红
+            return { backgroundColor: "red" };
           } else {
             return null;
           }
@@ -159,7 +155,8 @@ const erGrid1Ready = (e: any) => {
 };
 
 let mode = ""; // 当前操作的模式：主要用来区分是新增还是删除
-
+//对比数据
+const contrastData = ref<any>([]);
 const erGrid2Ready = () => {
   data.grid2 = erFormHelper.getGrid("gridView2");
   data.grid3 = erFormHelper.getGrid("gridView3");
@@ -218,7 +215,65 @@ const initializePage = async () => {
     );
   }
 };
-
+// 数据处理
+const handleData = (data: any) => {
+  const analysisData = data;
+  ANALYSE_ITEM_ARRAY = [];
+  const SAMPLE_NO_ARRAY: any = []; //去重后的计量申请号
+  const filterArr: any = []; // 去除后的数据
+  let customColumns: any = []; //所有列
+  analysisData.forEach((item: any) => {
+    const QID = item.ANALYSE_ITEM_CODE.toUpperCase();
+    const myField = `Q${QID}`; //分析项目Q+code
+    // 数据去重，放入filterArr----------------------------------------------------------
+    if (item.SAMPLE_NO && !SAMPLE_NO_ARRAY.includes(item.SAMPLE_NO)) {
+      SAMPLE_NO_ARRAY.push(item.SAMPLE_NO);
+      filterArr.push(item);
+    }
+    // ===========================处理数据 filterArr即显示在页面上的数据 ====================================================
+    filterArr.forEach((filterItem: any) => {
+      if (item.SAMPLE_NO && filterItem.SAMPLE_NO === item.SAMPLE_NO) {
+        if (item.Q25_COUNT !== 0) {
+          contrastData.value.push({
+            SAMPLE_NO: filterItem.SAMPLE_NO,
+            field: myField,
+            fieldValue: item["ANALYSIS_VALUE"],
+          });
+          //   Q25_COUNT!==0标红
+          filterItem[myField] = `${item["ANALYSIS_VALUE"]}`;
+        } else {
+          filterItem[myField] = +item["ANALYSIS_VALUE"];
+        }
+      }
+    });
+    // =======================设置列名  customColumns即动态列==========================================
+    if (!ANALYSE_ITEM_ARRAY.includes(myField) && item.ANALYSE_ITEM_DESC) {
+      ANALYSE_ITEM_ARRAY.push(myField);
+      const customColumn = {
+        headerName: item.ANALYSE_ITEM_DESC,
+        field: myField,
+        width: 100, //列的宽度
+        hidden: false, //列是否隐藏
+        sortable: true,
+        type: "value",
+      };
+      erFormHelper.addGridColumn("gridView1", customColumn);
+      customColumns.push(customColumn);
+    }
+  });
+  // ============================第一行数据处理  无值的设为空字符串====================================
+  let firstRowData = filterArr[0];
+  let newArray = customColumns.map((item: any) => item.colId);
+  newArray.forEach((property: any) => {
+    if (!(property in firstRowData)) {
+      firstRowData[property] = "";
+    }
+  });
+  console.log("filterArr", filterArr);
+  nextTick(() => {
+    erFormHelper.mergeDataToGrid(filterArr, "gridView1", true);
+  });
+};
 //查询
 //================================查询质量信息（动态展示列名）=======================================
 const queryInfo = async () => {
@@ -256,163 +311,15 @@ const queryInfo = async () => {
     true,
     true
   );
-  const analysisDataD = outInfo.blocks["Table0"].data;
+  const analysisDataD: any = outInfo.blocks["Table0"].data;
   //所有的分析项目数据=0z+qmir21_inq
   const dataRes: any = analysisDataZ.concat(analysisDataD);
   console.log("🚀 ~ dataRes:", dataRes);
-  //21表有数据时
   if (analysisDataD.length > 0) {
-    console.log("--------------fieldIds:", fieldIds);
-    //----------------每次查询先清空列-------------------------
-    erFormHelper.removeGridColumn("gridView1", fieldIds);
-
-    fieldIds = []; //清空
-    data.compareField = []; //清空
-    ANALYSE_ITEM_ARRAY = [];
-    //-------------------------------提取列数据
-    const Columns = dataRes.reduce(
-      (acc: any, cur: any) => {
-        // 排除 ANALYSE_ITEM_CODE 为空或未定义的情况
-        if (cur.ANALYSE_ITEM_CODE == null) {
-          return acc;
-        }
-        console.log("🚀 ~ data.compareField:", data.compareField);
-
-        if (
-          !data.compareField.some(
-            //some函数是看看这个数组里有没有符合这些条件的数据
-            (cfItem: any) => cfItem.fieldDesc === cur.ANALYSE_ITEM_CODE
-          ) &&
-          !acc.hash[cur.ANALYSE_ITEM_CODE]
-        ) {
-          acc.hash[cur.ANALYSE_ITEM_CODE] = true;
-          //给返回分析项目重新编号前缀Q拼接compareField规则表的长度(长度是递增的)
-          console.log("🚀 ~ data.compareField:", data.compareField);
-          const fieldId = "Q" + data.compareField.length;
-          //标红--------
-          // 项目去重，放到 ANALYSE_ITEM_ARRAY-----------------------------------------------------
-          if (!ANALYSE_ITEM_ARRAY.includes(fieldId)) {
-            ANALYSE_ITEM_ARRAY.push(fieldId);
-          }
-          console.log("ANALYSE_ITEM_ARRAY", ANALYSE_ITEM_ARRAY);
-          console.log("************cur", cur);
-
-          data.compareField.push({
-            fieldCode: fieldId,
-            fieldDesc: cur.ANALYSE_ITEM_CODE,
-            fieldType: "string",
-          });
-          const customColumn: any = {
-            field: "",
-            title: "",
-            width: 100,
-            hidden: false, //列是否隐藏
-            sortable: true, //可排序
-            type: "value",
-          };
-          customColumn.field = fieldId;
-          fieldIds.push(fieldId);
-          resultCodes.push(fieldId);
-
-          if ("ANALYSE_ITEM_DESC" in cur) {
-            customColumn.headerName = cur.ANALYSE_ITEM_DESC;
-          } else {
-            customColumn.headerName = cur.ANALYSE_ITEM_REMARK;
-          }
-          //customColumn.headerName = cur.ANALYSE_ITEM_CODE;//显示中文
-          if (cur.DATA_TYPE == "N") {
-            Reflect.set(customColumn, "aggregate", "sum");
-          }
-          acc.result.push(customColumn);
-          customColumns.value.push(customColumn);
-        }
-        return acc;
-      },
-      { result: [], hash: {} }
-    ).result;
-
-    erFormHelper.addGridColumn("gridView1", customColumns.value); //----------------添加查询出来的动态列
-    console.log("🚀 ~ Columns ~ customColumns:", customColumns);
-    // customColumns.value = []; //清空动态列
-
-    //处理grid数据analysisDataD
-    const result = new Map(); // 使用 Map 数据结构存储结果
-    for (const d of analysisDataD) {
-      console.log("🚀 ~ Columns ~ analysisDataD:", analysisDataD);
-
-      const {
-        SAMPLE_NO,
-        DATA_TYPE,
-        ANALYSIS_VALUE_TEXT,
-        ANALYSIS_VALUE,
-        ANALYSE_ITEM_CODE,
-        ...rest
-      } = d;
-      //标红------d
-      if (d.Q25_COUNT !== 0) {
-        d.ANALYSIS_VALUE = `${d.ANALYSIS_VALUE}`; //字符串--标红
-      } else {
-        d.ANALYSIS_VALUE = d.ANALYSIS_VALUE;
-      }
-      const analysisValue = d.ANALYSIS_VALUE;
-      //----------------------根据试样号--------------------------------
-      if (!result.has(SAMPLE_NO)) {
-        // 如果当前样本号还不存在，则创建新的对象并插入到 Map 中
-        const newObj: any = { SAMPLE_NO, ...rest };
-        const matchingField = Array.prototype.find.call(
-          data.compareField,
-          (field) => field.fieldDesc === ANALYSE_ITEM_CODE
-        );
-        if (matchingField) {
-          // 如果当前属性与 compareField 中的 fieldDesc 匹配，则将属性名改为对应的 fieldCode
-          newObj[matchingField.fieldCode] = analysisValue;
-        } else {
-          // 否则，使用 ANALYSE_ITEM_CODE 作为属性名
-          newObj[matchingField.ANALYSE_ITEM_CODE] = analysisValue;
-        }
-        result.set(SAMPLE_NO, newObj);
-      } else {
-        // 否则，在原有对象上添加新的属性
-        const existingObj = result.get(SAMPLE_NO);
-        const matchingField = Array.prototype.find.call(
-          data.compareField,
-          (field) => field.fieldDesc === ANALYSE_ITEM_CODE
-        );
-        if (matchingField) {
-          existingObj[matchingField.fieldCode] = analysisValue;
-        } else {
-          existingObj[matchingField.ANALYSE_ITEM_CODE] = analysisValue;
-        }
-      }
-    }
-    // 将 Map 转换为数组
-    const resultArray = Array.from(result.values());
-    console.log("🚀 ~ // ~ resultArray:", resultArray);
-
-    //解决低代码问题，动态列必须第一行所有数据都存在--赋值的格式不是字符串
-    let firstRowData = resultArray[0];
-    let newArray = customColumns.value.map((item: any) => item.colId);
-    newArray.forEach((property: any) => {
-      if (!(property in firstRowData)) {
-        firstRowData[property] = "";
-      }
-    });
-    customColumns.value = []; //清空动态列
-
-    erFormHelper.messageInfo(`查询完成,共查询到[${resultArray.length}]条数据`);
-    erFormHelper.mergeDataToGrid(resultArray, "gridView1");
-    console.log("🚀 YYY~ //resultArray ~ resultArray:", resultArray);
-    // 设置表格列不可编辑
-    erFormHelper.setGridEditable("gridView1", false);
-    erFormHelper.setGridEditable("gridView2", false);
-    erFormHelper.setGridEditable("gridView3", false);
+    handleData(dataRes);
   } else {
-    erFormHelper.messageInfo(
-      `查询完成,共查询到[${analysisDataD.length}]条数据`
-    );
-    erFormHelper.mergeDataToGrid(analysisDataD, "gridView1");
+    erFormHelper.messageSuccess("未查询到数据");
   }
-  console.log("🚀 ~ //customColumns ~ customColumns:", customColumns);
 };
 
 //F2查询
