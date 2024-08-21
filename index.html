@@ -1,17 +1,44 @@
-<!DOCTYPE html>
+<!--
+ * @Description:
+ * @Author: Edward
+ * @Date: 2023-10-16 16:35:33
+ * @LastEditors: Edward
+ * @LastEditTime: 2024-01-15 08:49:25
+-->
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + Vue + TS</title>
 </head>
 
 <body>
-    <h1>你好</h1>
-  <h1>你不好</h1>
-  <h1>天气不错</h1>
+  <div id="sub-app"></div>
+  <script type="module" src="/src/main.ts"></script>
+
+  <script>
+    const env = 'import.meta.env.VITE_APP_NODE_ENV';
+    if (env === 'development') {
+      const baseApi = 'import.meta.env.VITE_APP_BASE_API';
+      const url = new URL(baseApi);
+      const pathname = url.pathname;
+      if (pathname.length > 1) {
+        window._APP_OPTIONS_ = Object.freeze({
+          appContext: baseApi
+        });
+      }
+    } else if (env !== 'development' && !window.__POWERED_BY_WUJIE__) {
+      const url = new URL(window.location.href);
+      const context = url.pathname.substring(0, url.pathname.indexOf('/child/') + 1);
+      if (context.length > 1) {
+        window._APP_OPTIONS_ = Object.freeze({
+          appContext: context
+        });
+      }
+    }
+  </script>
 </body>
 
 </html>
